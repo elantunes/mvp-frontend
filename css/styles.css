@@ -1,0 +1,145 @@
+html * {
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #f8f8ff;
+    color: #0f2b3d;
+    font-family: Roboto;
+    height: 100%;
+}
+
+.btnPrimario,
+.btnSecundario {
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font: 13px Roboto;
+    letter-spacing: 1pt;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+.btnPrimario {
+    background-color: #f1520a;
+    color: white;
+    transition: 0.3s;
+}
+
+.btnPrimario:hover {
+    background-color: #ae1407;
+}
+
+.btnSecundario {
+    background-color: white;
+    color: #f1520a;
+}
+
+.btnSecundario:hover {
+    color: #ae1407;
+    border-color: #ae1407;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-center {
+	align-items: center;
+}
+
+.flex-end {
+	justify-content: flex-end;
+}
+
+.flex-space-between {
+	justify-content: space-between;
+}
+
+.flex-start {
+	align-content: flex-start;
+}
+
+.modal-titulo {
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+.popup-operacao-sucesso {
+    margin: 0 auto;
+    position: absolute;
+    top: -69px;
+    width: 100%;
+}
+
+.popup-operacao-sucesso > div {
+    background-color: #0fa94b;
+    border-radius: 10px;
+    color: white;
+    margin: 0 auto;
+    padding: 25px;
+    text-align: center;
+    width: 250px;
+}
+
+.row {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.row > div {
+    display: table-cell;
+}
+
+.tabelao {
+    background-color: white;
+    border-radius: 10px;
+    filter: drop-shadow(0 0 0.1rem #dfdfdf);
+    margin: auto;
+}
+
+.tabelao > .cabecalho {
+    background-color: #f7f8fd;
+    color: #1f3b4d;
+    font-size: 11pt;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 20px 0;
+    text-transform:uppercase;
+}
+
+.tabelao > .linhas .item {
+    line-height: 50px;
+}
+
+.tabelao > .linhas .item:hover {
+    background-color: #F5FAFF;
+}
+
+.tabelao > .linhas .item > div {
+    border-bottom: solid 1px #efefef;
+}
+
+.tabelao > .linhas .item .icone {
+    cursor: pointer;
+    text-align: center;
+    width: 60px;
+}
+
+.tabelao > .linhas .item div:first-child,
+.tabelao > .cabecalho > div:first-child {
+    padding-left: 35px;
+}
+
+.tabelao > .linhas .item div:last-child {
+    padding-right: 10px;
+}
+
+.tabelao > .linhas .item .icone img {
+    vertical-align: middle;
+}
