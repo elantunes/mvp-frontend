@@ -109,10 +109,15 @@ const get_modelos_veiculos = async () => {
 */
 const post_aluguel = async (aluguel) => {
   const url = `${SERVIDOR}aluguel`;
+
+  const formData = new FormData();
+  formData.append('id_veiculo', aluguel.id_veiculo);
+  formData.append('data_inicio', aluguel.data_inicio + ' 00:00:00');
+  formData.append('data_termino', aluguel.data_termino + ' 00:00:00');
+
   fetch(url, {
     method: 'post',
-    body: JSON.stringify(aluguel),
-    headers: { 'Content-Type': 'application/json' }
+    body: formData
   })
   .then((response) => response.json())
   .then(() => {
@@ -131,11 +136,16 @@ const post_aluguel = async (aluguel) => {
 */
 const put_aluguel = async (aluguel) => {
   const url = `${SERVIDOR}aluguel/${aluguel.id}`;
+
+  const formData = new FormData();
+  formData.append('id_veiculo', aluguel.id_veiculo);
+  formData.append('data_inicio', aluguel.data_inicio + ' 00:00:00');
+  formData.append('data_termino', aluguel.data_termino + ' 00:00:00');
+
   delete aluguel.id;
   fetch(url, {
     method: 'put',
-    body: JSON.stringify(aluguel),
-    headers: { 'Content-Type': 'application/json' }
+    body: formData
   })
   .then((response) => response.json())
   .then(() => {
