@@ -109,10 +109,15 @@ const get_modelos_veiculos = async () => {
 */
 const post_aluguel = async (aluguel) => {
   const url = `${SERVIDOR}aluguel`;
+
+  const formData = new FormData();
+  formData.append('id_veiculo', aluguel.id_veiculo);
+  formData.append('data_inicio', aluguel.data_inicio);
+  formData.append('data_termino', aluguel.data_termino);
+
   fetch(url, {
     method: 'post',
-    body: JSON.stringify(aluguel),
-    headers: { 'Content-Type': 'application/json' }
+    body: formData
   })
   .then((response) => response.json())
   .then(() => {
