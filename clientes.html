@@ -1,16 +1,8 @@
 <!--
-TODO: Tela de Lista de Clientes
-TODO: Popup de Edição de Cliente
-TODO: Popup de Novo Cliente
-TODO: Desativação de Cliente
-TODO: Ativação de Cliente
-TODO: Alguel tem que informar cliente
-TODO: API que leia CEP dos Correios
 TODO: Criar uma API para a Lista de Carros
 TODO: Criar um Endpoint para listar os carros
 TODO: Criar um Endpoint para listar os a serem divulgados em sites parceiros
 TODO: Colocar a API dos Carros no Docker
-
 TODO: Tela de lista de carros com opção para ativar/desativar anúncios
 -->
 <!DOCTYPE html>
@@ -34,7 +26,7 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
 
         <div style="display:flex; height:100%">
             <div style="background-color: #ff4500; color: white">
-                <div style="font-family: 'Caprasimo', cursive; font-size: 30pt; padding: 50px 50px; text-align: center; width: 180px;">
+                <div style="font-family: 'Caprasimo', cursive; font-size: 30pt; padding: 50px 50px; text-align: center; width: 180px">
                     Moove-se
                 </div>
                 <div class="menu">
@@ -46,10 +38,10 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                     </div>
                 </div>
             </div>
-            <div style="padding: 50px;">
+            <div style="padding: 50px">
                 <section>
-                    <div class="flex flex-space-between" style="height: 80px;">
-                        <div><span style="font-size: 20pt; font-weight: bold;">Clientes</span></div>
+                    <div class="flex flex-space-between" style="height: 80px">
+                        <div><span style="font-size: 20pt; font-weight: bold">Clientes</span></div>
                         <div id="btnNovoCliente"><button class="btnPrimario">Criar Novo</button></div>
                     </div>
                 </section>
@@ -77,30 +69,6 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                                         <img src="img/delete_FILL0_wght100_GRAD200_opsz24.svg" />
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal Deleta Cliente -->
-                    <div id="divModalDeleteCliente" class="modal">
-                        <div class="modal-content" style="border-radius: 10px; width: 400px;">
-                            <div class="flex flex-center flex-space-between" style="padding-bottom: 40px">
-                                <div>
-                                    <p id="titulo" class="modal-titulo">Excluir Cliente</p>
-                                </div>
-                                <div>
-                                    <span class="close">&times;</span>
-                                </div>
-                            </div>
-                            <div style="padding: 20px 0; text-align: center;">
-                                Deseja realmente excluir este cliente?
-                            </div>
-                            <div class="flex-end modal-rodape-botoes">
-                                <div>
-                                    <input id="hidIdModalDeleteCliente" type="hidden">
-                                    <button type="button" id="btnDeletarCliente" class="btnPrimario" onclick="delete_cliente(hidIdModalDeleteCliente.value)">Confirmar</button>
-                                </div>
-                                <div><button type="button" class="btnSecundario" onclick="closeModal(divModalDeleteCliente)">Cancelar</button></div>
                             </div>
                         </div>
                     </div>
@@ -162,6 +130,30 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                         <div><button type="button" class="btnSecundario" onclick="closeModal(divModalCliente)">Cancelar</button></div>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <!-- Modal Deleta Cliente -->
+        <div id="divModalDeleteCliente" class="modal">
+            <div class="modal-content" style="border-radius: 10px; width: 400px;">
+                <div class="flex flex-center flex-space-between" style="padding-bottom: 40px">
+                    <div>
+                        <p id="titulo" class="modal-titulo">Excluir Cliente</p>
+                    </div>
+                    <div>
+                        <span class="close">&times;</span>
+                    </div>
+                </div>
+                <div style="padding: 20px 0; text-align: center;">
+                    Deseja realmente excluir este cliente?
+                </div>
+                <div class="flex-end modal-rodape-botoes">
+                    <div>
+                        <input id="hidIdModalDeleteCliente" type="hidden">
+                        <button type="button" id="btnDeletarCliente" class="btnPrimario" onclick="delete_cliente(hidIdModalDeleteCliente.value)">Confirmar</button>
+                    </div>
+                    <div><button type="button" class="btnSecundario" onclick="closeModal(divModalDeleteCliente)">Cancelar</button></div>
+                </div>
             </div>
         </div>
 

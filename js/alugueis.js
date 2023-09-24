@@ -35,6 +35,15 @@ selModeloVeiculo.onchange = function(){
 };
 
 
+txtCpfCliente.onkeyup = function(event) {
+  const cpf = event.target.value;
+  if (cpf.length == 11)
+    get_cliente(cpf);
+  else
+    lblNomeCliente.innerHTML = '&nbsp';
+}
+
+
 /*
   --------------------------------------------------------------------------------------
   Deleta um aluguel via requisição DELETE
@@ -90,6 +99,30 @@ const get_aluguel = async (id) => {
 
 /*
   --------------------------------------------------------------------------------------
+  Obtém as informações de um CLiente pelo CPF
+  --------------------------------------------------------------------------------------
+*/
+const get_cliente = async(cpf) => {
+  const url = `${SERVIDOR}cliente`;
+
+  const formData = new FormData();
+  formData.append('cpf', cpf);
+
+  fetch(url, {
+    method: 'get',
+    headers: { 'cpf':cpf }
+  })
+  .then((response) => response.json())
+  .then(function(data) {
+    hidIdCliente.value = !data.hasOwnProperty('erro') ? data.id : '';
+    lblNomeCliente.innerHTML = !data.hasOwnProperty('erro') ? data.nome : 'CPF não encontrado';
+  })
+  .catch((error) => console.error('Error:', error));
+}
+
+
+/*
+  --------------------------------------------------------------------------------------
   Obtém uma lista de modelos veículos via requisição GET
   --------------------------------------------------------------------------------------
 */
@@ -116,6 +149,7 @@ const post_aluguel = async (aluguel) => {
   const url = `${SERVIDOR}aluguel`;
 
   const formData = new FormData();
+  formData.append('id_cliente', aluguel.id_cliente);
   formData.append('id_veiculo', aluguel.id_veiculo);
   formData.append('data_inicio', aluguel.data_inicio + ' 00:00:00');
   formData.append('data_termino', aluguel.data_termino + ' 00:00:00');
@@ -176,6 +210,8 @@ function ativar_editForm(aluguel) {
   const data_termino = string_para_date(aluguel.data_termino);
 
   hiddenId.value = aluguel.id;
+  txtCpfCliente.value = aluguel.cliente.cpf;
+  lblNomeCliente.innerHTML = aluguel.cliente.nome;
   selModeloVeiculo.value = aluguel.veiculo.id;
   dateDataInicio.valueAsDate = data_inicio;
   dateDataTermino.valueAsDate = data_termino;
@@ -195,6 +231,8 @@ function ativar_newForm() {
   const data_inicio = new Date();
   const data_termino = new Date();
 
+  txtCpfCliente.value = '';
+  lblNomeCliente.innerHTML = '&nbsp;';
   selModeloVeiculo.value = '';
   dateDataInicio.valueAsDate = data_inicio;
   dateDataTermino.valueAsDate = data_termino;
@@ -238,13 +276,20 @@ function calcular_valor_total_aluguel() {
 
 
 function ler_aluguelForm() {
-
   const id = hiddenId.value;
+  const id_cliente = hidIdCliente.value;
   const id_veiculo = parseInt(selModeloVeiculo.value);
   const data_inicio = dateDataInicio.value;
   const data_termino = dateDataTermino.value;
 
-  var aluguel = { id: id, id_veiculo: id_veiculo, data_inicio: data_inicio, data_termino:data_termino };
+  const aluguel = {
+    id: id,
+    id_cliente: id_cliente,
+    id_veiculo: id_veiculo,
+    data_inicio: data_inicio,
+    data_termino:data_termino
+  };
+
   return aluguel;
 }
 
@@ -277,6 +322,7 @@ function render_alugueis(alugueis) {
 
     divListaAlugueis_linhas.innerHTML = html;
 }
+
 
 function render_infos_aluguel(valor_diaria, dias) {
   divValorDiariaVeiculo.innerHTML = valor_diaria != null ? decimal_para_texto_moedareal(valor_diaria) : '-';
