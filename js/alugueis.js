@@ -2,16 +2,15 @@ SERVIDOR = 'http://127.0.0.1:5000/';
 
 btnNovoAluguel.onclick = () => ativar_newForm();
 
-
 btnSalvarAluguel.onclick = function() {
-  var aluguel = ler_aluguelForm();
-  post_aluguel(aluguel);
+  var dados = ler_aluguelForm();
+  post_aluguel(dados);
 };
 
 
 btnSalvarAlteracoesAluguel.onclick = function() {
-  var aluguel = ler_aluguelForm();
-  put_aluguel(aluguel);
+  var dados = ler_aluguelForm();
+  put_aluguel(dados);
 };
 
 
@@ -227,6 +226,25 @@ function calcular_valor_total_aluguel() {
   const dias = calcular_numero_dias(data_inicio, data_termino);
 
   render_infos_aluguel(valor_diaria, dias);
+}
+
+
+function exibir_modal_novo_cliente() {
+  titulo.innerHTML = 'Novo Cliente';
+
+  // const data_inicio = new Date();
+  // const data_termino = new Date();
+
+  // selModeloVeiculo.value = '';
+  // dateDataInicio.valueAsDate = data_inicio;
+  // dateDataTermino.valueAsDate = data_termino;
+
+  // render_infos_aluguel(null, calcular_numero_dias(data_inicio, data_termino));
+
+  btnSalvarCliente.style.display = 'block';
+  btnSalvarAlteracoesCliente.style.display = 'none';
+
+  $('#divModalCliente').fadeIn(250,'swing');
 }
 
 

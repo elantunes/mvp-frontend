@@ -1,5 +1,11 @@
 <!--
-TODO: Aluguel tem que informar cliente
+TODO: Tela de Lista de Clientes
+TODO: Popup de Edição de Cliente
+TODO: Popup de Novo Cliente
+TODO: Desativação de Cliente
+TODO: Ativação de Cliente
+TODO: Alguel tem que informar cliente
+TODO: API que leia CEP dos Correios
 TODO: Criar uma API para a Lista de Carros
 TODO: Criar um Endpoint para listar os carros
 TODO: Criar um Endpoint para listar os a serem divulgados em sites parceiros
@@ -10,7 +16,7 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Moove-se - Aluguéis</title>
+        <title>Moove-se - Clientes</title>
         <link rel="stylesheet" type="text/css" href="css/elements.css">
         <link rel="stylesheet" type="text/css" href="css/modal.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -32,10 +38,10 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                     Moove-se
                 </div>
                 <div class="menu">
-                    <div class="menu-item-selecionado">
+                    <div>
                         <a href="index.html">Aluguéis</a>
                     </div>
-                    <div>
+                    <div class="menu-item-selecionado">
                         <a href="clientes.html">Clientes</a>
                     </div>
                 </div>
@@ -43,8 +49,8 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
             <div style="padding: 50px;">
                 <section>
                     <div class="flex flex-space-between" style="height: 80px;">
-                        <div><span style="font-size: 20pt; font-weight: bold;">Aluguéis</span></div>
-                        <div id="btnNovoAluguel"><button class="btnPrimario">Criar Novo</button></div>
+                        <div><span style="font-size: 20pt; font-weight: bold;">Clientes</span></div>
+                        <div id="btnNovoCliente"><button class="btnPrimario">Criar Novo</button></div>
                     </div>
                 </section>
                 <section>
@@ -79,68 +85,8 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                         </div>
                     </div>
 
-                    <!-- Modal Aluguel -->
-                    <div id="divModalAluguel" class="modal">
-                        <div class="modal-content" style="border-radius: 10px; width: 400px;">
-                            <div class="flex flex-center flex-space-between" style="padding-bottom: 40px">
-                                <div>
-                                    <p id="titulo" class="modal-titulo">Novo Aluguel</p>
-                                </div>
-                                <div>
-                                    <span class="close">&times;</span>
-                                </div>
-                            </div>
-                            <form action="" method="post">
-                                <input type="hidden" id="hiddenId" />
-                                <div>
-                                    <div style="margin: 0 auto; width: fit-content;">
-                                        <div style="margin-bottom: 15px;">
-                                            <div class="rotulo-input">Veículo:</div>
-                                            <div>
-                                                <select id="selModeloVeiculo" required title="Escolha um veículo" style="width: 100%">
-                                                    <option value="">-- Escolha o modelo --</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-space-between" style="margin-bottom: 15px; width: 360px">
-                                            <div>
-                                                <div class="rotulo-input">Início:</div>
-                                                <input type="date" id="dateDataInicio" placeholder="Data de Início" style="width: 170px" />
-                                            </div>
-                                            <div>
-                                                <div class="rotulo-input">Término:</div>
-                                                <input type="date" id="dateDataTermino" style="width: 170px" />
-                                            </div>
-                                        </div>
-                                        <div style="background-color: #f8f8ff; border: solid 1px #e5e9fd; border-radius: 10px; margin-top: 30px; padding: 10px 30px">
-                                            <div class="flex flex-space-between" style="line-height: 30pt;">
-                                                <div>Diária:</div>
-                                                <div id="divValorDiariaVeiculo"></div>
-                                            </div>
-                                            <div class="flex flex-space-between" style="line-height: 30pt;">
-                                                <div>Dias:</div>
-                                                <div id="divDias"></div>
-                                            </div>
-                                            <div class="flex flex-space-between" style="line-height: 30pt;">
-                                                <div>Total do aluguel:</div>
-                                                <div id="divTotal"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex-end modal-rodape-botoes">
-                                    <div>
-                                        <button type="button" id="btnSalvarAluguel" class="btnPrimario">Salvar</button>
-                                        <button type="button" id="btnSalvarAlteracoesAluguel" class="btnPrimario">Salvar Alterações</button>
-                                    </div>
-                                    <div><button type="button" class="btnSecundario" onclick="closeModal(divModalAluguel)">Cancelar</button></div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Modal Deleta Aluguel -->
-                    <div id="divModalDeleteAluguel" class="modal">
+                    <!-- Modal Deleta Cliente -->
+                    <div id="divModalDeleteCliente" class="modal">
                         <div class="modal-content" style="border-radius: 10px; width: 400px;">
                             <div class="flex flex-center flex-space-between" style="padding-bottom: 40px">
                                 <div>
@@ -162,19 +108,75 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                             </div>
                         </div>
                     </div>
-
                 </section>
             </div>
         </div>
 
+        <!-- Modal Cliente -->
+        <div id="divModalCliente" class="modal">
+            <div class="modal-content" style="border-radius: 10px">
+                <div class="flex flex-center flex-space-between" style="padding-bottom: 40px">
+                    <div>
+                        <p id="titulo" class="modal-titulo">Novo Cliente</p>
+                    </div>
+                    <div>
+                        <span id="spanClose" class="close">&times;</span>
+                    </div>
+                </div>
+                <form action="" method="post">
+                    <input type="hidden" id="hiddenId" />
+                    <div class="form">
+                        <div>
+                            <input type="text" id="txtNomeCliente" placeholder="Nome" />
+                        </div>
+                        <div class="flex flex-space-between">
+                            <div>
+                                <input type="text" id="txtCpfCliente" maxlength="11" placeholder="CPF" />
+                            </div>
+                            <div>
+                                <input type="text" id="txtCepEnderecoCliente" maxlength="8" placeholder="CEP" />
+                            </div>
+                        </div>
+                        <div>
+                            <label id="lblLogradouroEnderecoCliente">Rua / Logradouro / Avenida</label>
+                        </div>
+                        <div class="flex flex-space-between">
+                            <div>
+                                <input type="text" id="txtNumeroEnderecoCliente" placeholder="Número" />
+                            </div>
+                            <div>
+                                <input type="text" id="txtComplementoEnderecoCliente" placeholder="Complemento" />
+                            </div>
+                        </div>
+                        <div id="divLocalidadeUfEnderecoCliente" style="line-height:30pt; opacity:0">
+                            <div>
+                                <label id="lblBairroEnderecoCliente"></label>&nbsp;
+                            </div>
+                            <div>
+                                <label id="lblCidadeEnderecoCliente"></label> /
+                                <label id="lblUfEnderecoCliente"></label>&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-end modal-rodape-botoes">
+                        <div>
+                            <button type="button" id="btnSalvarCliente" class="btnPrimario">Salvar</button>
+                            <button type="button" id="btnSalvarAlteracoesCliente" class="btnPrimario">Salvar Alterações</button>
+                        </div>
+                        <div><button type="button" class="btnSecundario" onclick="closeModal(divModalCliente)">Cancelar</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.0.min.js"></script>
-        <script src="js/alugueis.js"></script>
+        <script src="js/clientes.js"></script>
         <script src="js/uteis.js"></script>
+        <script src="js/uteis-mascaras.js"></script>
         <script src="js/modal.js"></script>
         <!-- scripts Startup  -->
         <script>
-            get_modelos_veiculos();
-            get_alugueis();
+            get_clientes();
         </script>
     </body>
 </html>

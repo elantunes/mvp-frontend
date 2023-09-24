@@ -1,9 +1,9 @@
-html * {
-    margin: 0;
-}
-
 html {
     height: 100%;
+}
+
+html * {
+    margin: 0;
 }
 
 body {
@@ -25,7 +25,7 @@ body {
 }
 
 .btnPrimario {
-    background-color: #f1520a;
+    background-color: #ff4500;
     color: white;
     transition: 0.3s;
 }
@@ -36,7 +36,7 @@ body {
 
 .btnSecundario {
     background-color: white;
-    color: #f1520a;
+    color: #ff4500;
 }
 
 .btnSecundario:hover {
@@ -62,6 +62,30 @@ body {
 
 .flex-start {
 	align-content: flex-start;
+}
+
+.form > div {
+    margin: 20px;
+}
+
+.menu > div {
+    cursor: pointer;
+    line-height: 50px;
+    padding-left: 40px;
+}
+
+.menu > div:hover {
+    background: rgba(0, 0, 0, 1);
+}
+
+.menu > div.menu-item-selecionado {
+    background: rgba(0, 0, 0, .8);
+ }
+
+.menu > div > a {
+    color: inherit;
+    display: block;
+    text-decoration: none;
 }
 
 .modal-titulo {
@@ -142,4 +166,15 @@ body {
 
 .tabelao > .linhas .item .icone img {
     vertical-align: middle;
+}
+
+#txtComplementoEnderecoCliente,
+#txtCepEnderecoCliente,
+#txtCpfCliente,
+#txtNumeroEnderecoCliente {
+    width: 125px;
+}
+
+#txtNomeCliente {
+    width: 300px;
 }
