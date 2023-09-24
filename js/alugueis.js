@@ -1,15 +1,21 @@
-SERVIDOR = 'http://127.0.0.1:5000/';
+SERVIDOR = 'http://localhost:5000/';
 
 btnNovoAluguel.onclick = () => ativar_newForm();
 
 btnSalvarAluguel.onclick = function() {
-  var dados = ler_aluguelForm();
+  
+  if (selModeloVeiculo.value == '') {
+    alert('Informe o veículo');
+    return false;
+  }
+
+  const dados = ler_aluguelForm();
   post_aluguel(dados);
 };
 
 
 btnSalvarAlteracoesAluguel.onclick = function() {
-  var dados = ler_aluguelForm();
+  const dados = ler_aluguelForm();
   put_aluguel(dados);
 };
 
@@ -71,8 +77,8 @@ const get_alugueis = async () => {
   Obtém um aluguel via requisição GET
   --------------------------------------------------------------------------------------
 */
-const get_aluguel = async (idAluguel) => {
-  const url = `${SERVIDOR}aluguel/${idAluguel}`;
+const get_aluguel = async (id) => {
+  const url = `${SERVIDOR}aluguel/${id}`;
   fetch(url, {
     method: 'get',
   })
@@ -130,7 +136,7 @@ const post_aluguel = async (aluguel) => {
 
 /*
   --------------------------------------------------------------------------------------
-  Deleta um aluguel via requisição DELETE
+  Altera um aluguel via requisição PUT
   --------------------------------------------------------------------------------------
 */
 const put_aluguel = async (aluguel) => {
@@ -142,6 +148,7 @@ const put_aluguel = async (aluguel) => {
   formData.append('data_termino', aluguel.data_termino + ' 00:00:00');
 
   delete aluguel.id;
+
   fetch(url, {
     method: 'put',
     body: formData
@@ -158,7 +165,7 @@ const put_aluguel = async (aluguel) => {
 
 function ativar_confirmacao_delecao(idAluguel) {
   hiddenIdAluguelModalDeleteAluguel.value = idAluguel;
-  $('#divModalDeleteAluguel').fadeIn(250,'swing');
+  divModalDeleteAluguel.style.display = 'flex';
 }
 
 
@@ -178,7 +185,7 @@ function ativar_editForm(aluguel) {
   btnSalvarAluguel.style.display = 'none';
   btnSalvarAlteracoesAluguel.style.display = 'block';
 
-  $('#divModalAluguel').fadeIn(250,'swing');
+  divModalAluguel.style.display = 'flex';
 }
 
 
@@ -197,7 +204,7 @@ function ativar_newForm() {
   btnSalvarAluguel.style.display = 'block';
   btnSalvarAlteracoesAluguel.style.display = 'none';
 
-  $('#divModalAluguel').fadeIn(250,'swing');
+  divModalAluguel.style.display = 'flex';
 }
 
 
@@ -220,7 +227,8 @@ function calcular_numero_dias (data_inicio, data_termino) {
 
 
 function calcular_valor_total_aluguel() {
-  const valor_diaria = parseFloat(document.querySelector('option:checked').dataset.valordiaria);
+  const veiculo = document.querySelector('option:checked').value;
+  const valor_diaria = veiculo != '' ? parseFloat(document.querySelector('option:checked').dataset.valordiaria) : null;
   const data_inicio = new Date(dateDataInicio.value);
   const data_termino = new Date(dateDataTermino.value);
   const dias = calcular_numero_dias(data_inicio, data_termino);
@@ -229,31 +237,7 @@ function calcular_valor_total_aluguel() {
 }
 
 
-function exibir_modal_novo_cliente() {
-  titulo.innerHTML = 'Novo Cliente';
-
-  // const data_inicio = new Date();
-  // const data_termino = new Date();
-
-  // selModeloVeiculo.value = '';
-  // dateDataInicio.valueAsDate = data_inicio;
-  // dateDataTermino.valueAsDate = data_termino;
-
-  // render_infos_aluguel(null, calcular_numero_dias(data_inicio, data_termino));
-
-  btnSalvarCliente.style.display = 'block';
-  btnSalvarAlteracoesCliente.style.display = 'none';
-
-  $('#divModalCliente').fadeIn(250,'swing');
-}
-
-
 function ler_aluguelForm() {
-
-  if (selModeloVeiculo.value == '') {
-    alert('Informe o veículo');
-    return;
-  }
 
   const id = hiddenId.value;
   const id_veiculo = parseInt(selModeloVeiculo.value);

@@ -55,26 +55,22 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                 </section>
                 <section>
                     <div style="position: relative">
-                        <div id="divListaAlugueis" class="tabelao">
+                        <div id="divListaClientes" class="tabelao">
                             <div class="row cabecalho">
-                                <div>Veículo</div>
-                                <div>Data Início</div>
-                                <div>Data Término</div>
-                                <div>Valor</div>
+                                <div>Nome</div>
+                                <div style="width: 200px">CPF</div>
                                 <div style="width: 60px"></div>
                                 <div style="width: 60px"></div>
                             </div>
-                            <div id="divNaoHaAlugueis" style="display: none; padding: 50px; text-align: center;">
-                                Não há aluguéis cadastrados. Convoque o marketing, aguarde sentado ou clique no botão "Criar Novo"
+                            <div id="divNaoHaClientes" style="display: none; padding: 50px; text-align: center">
+                                Não há clientes cadastrados. Convoque o marketing, aguarde sentado ou clique no botão "Criar Novo"
                             </div>
-                            <div id="divListaAlugueis_linhas" class="linhas"></div>
+                            <div id="divListaClientes_linhas" class="linhas"></div>
                             <div id="divItemTemplate" style="display:none">
                                 <div class="row item">
-                                    <div>[veiculo]</div>
-                                    <div>[data_inicio]</div>
-                                    <div>[data_termino]</div>
-                                    <div>[valor]</div>
-                                    <div class="icone" onclick="get_aluguel([id])">
+                                    <div>[nome]</div>
+                                    <div style="width: 200px">[cpf]</div>
+                                    <div class="icone" onclick="get_cliente([id])">
                                         <img src="img/edit_FILL0_wght100_GRAD200_opsz24.svg" />
                                     </div>
                                     <div class="icone" onclick="ativar_confirmacao_delecao([id])">
@@ -90,21 +86,21 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                         <div class="modal-content" style="border-radius: 10px; width: 400px;">
                             <div class="flex flex-center flex-space-between" style="padding-bottom: 40px">
                                 <div>
-                                    <p id="titulo" class="modal-titulo">Excluir Aluguel</p>
+                                    <p id="titulo" class="modal-titulo">Excluir Cliente</p>
                                 </div>
                                 <div>
                                     <span class="close">&times;</span>
                                 </div>
                             </div>
                             <div style="padding: 20px 0; text-align: center;">
-                                Deseja realmente excluir este aluguel?
+                                Deseja realmente excluir este cliente?
                             </div>
                             <div class="flex-end modal-rodape-botoes">
                                 <div>
-                                    <input id="hiddenIdAluguelModalDeleteAluguel" type="hidden">
-                                    <button type="button" id="btnDeletarAluguel" class="btnPrimario" onclick="delete_aluguel(hiddenIdAluguelModalDeleteAluguel.value)">Confirmar</button>
+                                    <input id="hidIdModalDeleteCliente" type="hidden">
+                                    <button type="button" id="btnDeletarCliente" class="btnPrimario" onclick="delete_cliente(hidIdModalDeleteCliente.value)">Confirmar</button>
                                 </div>
-                                <div><button type="button" class="btnSecundario" onclick="closeModal(divModalDeleteAluguel)">Cancelar</button></div>
+                                <div><button type="button" class="btnSecundario" onclick="closeModal(divModalDeleteCliente)">Cancelar</button></div>
                             </div>
                         </div>
                     </div>
@@ -150,7 +146,7 @@ TODO: Tela de lista de carros com opção para ativar/desativar anúncios
                         </div>
                         <div id="divLocalidadeUfEnderecoCliente" style="line-height:30pt; opacity:0">
                             <div>
-                                <label id="lblBairroEnderecoCliente"></label>&nbsp;
+                                <label id="lblLocalidadeEnderecoCliente"></label>&nbsp;
                             </div>
                             <div>
                                 <label id="lblCidadeEnderecoCliente"></label> /
