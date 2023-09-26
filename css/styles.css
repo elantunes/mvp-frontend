@@ -13,37 +13,6 @@ body {
     height: 100%;
 }
 
-.btnPrimario,
-.btnSecundario {
-    border: 2px solid transparent;
-    border-radius: 6px;
-    cursor: pointer;
-    font: 13px Roboto;
-    letter-spacing: 1pt;
-    margin: 10px;
-    padding: 10px 20px;
-}
-
-.btnPrimario {
-    background-color: #ff4500;
-    color: white;
-    transition: 0.3s;
-}
-
-.btnPrimario:hover {
-    background-color: #ae1407;
-}
-
-.btnSecundario {
-    background-color: white;
-    color: #ff4500;
-}
-
-.btnSecundario:hover {
-    color: #ae1407;
-    border-color: #ae1407;
-}
-
 .flex {
 	display: flex;
 }
@@ -177,4 +146,69 @@ body {
 
 #txtNomeCliente {
     width: 300px;
+}
+
+/********************
+ Cards de Anúncios
+********************/
+
+#lista_anuncios,
+#lista_veiculos {
+    flex-wrap: wrap;
+}
+
+#lista_anuncios *,
+#lista_veiculos * {
+    cursor: pointer;
+    line-height: 25px;
+}
+
+#lista_anuncios .preco,
+#lista_veiculos .preco {
+    color: #008000;
+    font-size: 15pt;
+    margin-top: 10pt;
+}
+
+#lista_anuncios > div,
+#lista_veiculos > div {
+    border-style: solid;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    width: 150px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+#lista_anuncios > div:hover,
+#lista_veiculos > div:hover {
+    transform: scale(1.1);
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+#lista_anuncios [data-veiculo-item] {
+    border-color: #ff4500;
+}
+
+#lista_anuncios > div {
+    box-shadow: 5px 5px rgba(255, 69, 0, .2);
+}
+
+#lista_veiculos > div {
+    border: solid rgba(185, 217, 235, .5);
+    box-shadow: 5px 5px rgba(185, 217, 235, 0);
+}
+
+
+/********************
+ Containers
+********************/
+
+.container_vazio {
+    border: #B9D9EB 2px dashed;
+    display: none;
+    line-height: 100px;
+    text-align: center;
 }

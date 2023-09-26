@@ -2,21 +2,18 @@ SERVIDOR = 'http://localhost:5000/';
 
 btnNovoAluguel.onclick = () => ativar_newForm();
 
-btnSalvarAluguel.onclick = function() {
-  
-  if (selModeloVeiculo.value == '') {
-    alert('Informe o veículo');
-    return false;
-  }
 
+btnSalvarAluguel.onclick = function() {
   const dados = ler_aluguelForm();
-  post_aluguel(dados);
+  if (valida_dados_insercao_aluguel(dados))
+    post_aluguel(dados);
 };
 
 
 btnSalvarAlteracoesAluguel.onclick = function() {
   const dados = ler_aluguelForm();
-  put_aluguel(dados);
+  if (valida_dados_insercao_aluguel(dados))
+    put_aluguel(dados);
 };
 
 
@@ -211,6 +208,7 @@ function ativar_editForm(aluguel) {
 
   hiddenId.value = aluguel.id;
   txtCpfCliente.value = aluguel.cliente.cpf;
+  txtCpfCliente.disabled = 'disabled';
   lblNomeCliente.innerHTML = aluguel.cliente.nome;
   selModeloVeiculo.value = aluguel.veiculo.id;
   dateDataInicio.valueAsDate = data_inicio;
@@ -232,6 +230,7 @@ function ativar_newForm() {
   const data_termino = new Date();
 
   txtCpfCliente.value = '';
+  txtCpfCliente.disabled = '';
   lblNomeCliente.innerHTML = '&nbsp;';
   selModeloVeiculo.value = '';
   dateDataInicio.valueAsDate = data_inicio;
@@ -243,12 +242,6 @@ function ativar_newForm() {
   btnSalvarAlteracoesAluguel.style.display = 'none';
 
   divModalAluguel.style.display = 'flex';
-}
-
-
-function ativar_popup_operacao_com_sucesso() {
-  const div = $('.popup-operacao-sucesso');
-    div.animate({top: '10'}, 500, function() { setTimeout(function() { div.animate({top: '-69'}, 'fast') }, 3000) });
 }
 
 
@@ -277,10 +270,10 @@ function calcular_valor_total_aluguel() {
 
 function ler_aluguelForm() {
   const id = hiddenId.value;
-  const id_cliente = hidIdCliente.value;
-  const id_veiculo = parseInt(selModeloVeiculo.value);
-  const data_inicio = dateDataInicio.value;
-  const data_termino = dateDataTermino.value;
+  const id_cliente = vazio_vira_null(hidIdCliente.value);
+  const id_veiculo = selModeloVeiculo.value != '' ? parseInt(selModeloVeiculo.value) : null;
+  const data_inicio = vazio_vira_null(dateDataInicio.value);
+  const data_termino = vazio_vira_null(dateDataTermino.value);
 
   const aluguel = {
     id: id,
@@ -328,4 +321,15 @@ function render_infos_aluguel(valor_diaria, dias) {
   divValorDiariaVeiculo.innerHTML = valor_diaria != null ? decimal_para_texto_moedareal(valor_diaria) : '-';
   divDias.innerHTML = dias
   divTotal.innerHTML = valor_diaria != null ? decimal_para_texto_moedareal(valor_diaria * dias) : '-';
+}
+
+
+function valida_dados_insercao_aluguel(cliente) {
+
+  if (selModeloVeiculo.value == '') {
+    alert('Informe o veículo!');
+    return false;
+  }
+
+  return true;
 }

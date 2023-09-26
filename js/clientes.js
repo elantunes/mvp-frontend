@@ -5,13 +5,15 @@ btnNovoCliente.onclick = () => exibir_modal_novo_cliente();
 
 btnSalvarAlteracoesCliente.onclick = function() {
   const dados = ler_clienteForm();
-  put_cliente(dados);
+  if (valida_dados_alteracao_cliente(dados))
+    put_cliente(dados);
 };
 
 
 btnSalvarCliente.onclick = function() {
   const dados = ler_clienteForm();
-  post_cliente(dados);
+  if (valida_dados_insercao_cliente(dados))
+    post_cliente(dados);
 };
 
 
@@ -208,12 +210,6 @@ function ativar_editForm(cliente) {
 }
 
 
-function ativar_popup_operacao_com_sucesso() {
-  const div = $('.popup-operacao-sucesso');
-    div.animate({top: '10'}, 500, function() { setTimeout(function() { div.animate({top: '-69'}, 'fast') }, 3000) });
-}
-
-
 function exibir_modal_novo_cliente() {
   document.querySelector('#divModalCliente #titulo').innerHTML = 'Novo Cliente';
 
@@ -231,18 +227,19 @@ function exibir_modal_novo_cliente() {
   divModalCliente.style.display = 'flex';
 }
 
+
 function ler_clienteForm() {
 
-  const id = parseInt(hiddenId.value);
-  const nome = txtNomeCliente.value;
-  const cpf = parseInt(txtCpfCliente.value);
-  const cepEndereco = parseInt(txtCepEnderecoCliente.value);
-  const logradouroEndereco = lblLogradouroEnderecoCliente.innerHTML;
-  const numeroEndereco = txtNumeroEnderecoCliente.value;
-  const complemento = txtComplementoEnderecoCliente.value;
-  const localidade = lblLocalidadeEnderecoCliente.innerHTML;
-  const cidade = lblCidadeEnderecoCliente.innerHTML;
-  const uf = lblUfEnderecoCliente.innerHTML;
+  const id = hiddenId.value != '' ? parseInt(hiddenId.value) : null;
+  const nome = vazio_vira_null(txtNomeCliente.value);
+  const cpf = txtCpfCliente.value != '' ? parseInt(txtCpfCliente.value) : null;
+  const cepEndereco = txtCepEnderecoCliente.value != '' ? parseInt(txtCepEnderecoCliente.value) : null;
+  const logradouroEndereco = vazio_vira_null(lblLogradouroEnderecoCliente.innerHTML);
+  const numeroEndereco = vazio_vira_null(txtNumeroEnderecoCliente.value);
+  const complemento = vazio_vira_null(txtComplementoEnderecoCliente.value);
+  const localidade = vazio_vira_null(lblLocalidadeEnderecoCliente.innerHTML);
+  const cidade = vazio_vira_null(lblCidadeEnderecoCliente.innerHTML);
+  const uf = vazio_vira_null(lblUfEnderecoCliente.innerHTML);
 
   var cliente = {
     id: id,
@@ -283,4 +280,70 @@ function render_clientes(clientes) {
   });
 
   divListaClientes_linhas.innerHTML = html;
+}
+
+
+function valida_dados_alteracao_cliente(cliente) {
+  
+  if (cliente.id == null) {
+    alert('Cliente sem ID');
+    return false;
+  }
+  
+  if (cliente.nome == null) {
+    alert('Informe um Nome');
+    return false;
+  }
+  
+  if (cliente.cpf == null) {
+    alert('Informe um CPF');
+    return false;
+  }
+
+  if (cliente.cepEndereco == null) {
+    alert('Informe um CEP');
+    return false;
+  }
+
+  if (cliente.numeroEndereco == null) {
+    alert('Informe o Número do Endereço');
+    return false;
+  }
+
+  if (cliente.numeroEndereco == null) {
+    alert('É necessário um CEP válido');
+    return false;
+  }
+
+  return true;
+}
+
+
+function valida_dados_insercao_cliente(cliente) {
+  if (cliente.nome == null) {
+    alert('Informe um Nome');
+    return false;
+  }
+  
+  if (cliente.cpf == null) {
+    alert('Informe um CPF');
+    return false;
+  }
+
+  if (cliente.cepEndereco == null) {
+    alert('Informe um CEP');
+    return false;
+  }
+
+  if (cliente.numeroEndereco == null) {
+    alert('Informe o Número do Endereço');
+    return false;
+  }
+
+  if (cliente.numeroEndereco == null) {
+    alert('É necessário um CEP válido');
+    return false;
+  }
+
+  return true;
 }
