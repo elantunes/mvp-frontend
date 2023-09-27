@@ -1,10 +1,9 @@
-<!--
-TODO: Colocar a API dos Carros no Docker
--->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Moove-se - Anúncios</title>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="favicon.png" sizes="16x16">
         <link rel="stylesheet" type="text/css" href="css/elementos.css">
         <link rel="stylesheet" type="text/css" href="css/modal.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -37,7 +36,7 @@ TODO: Colocar a API dos Carros no Docker
                     </div>
                 </div>
             </div>
-            <div style="padding: 50px">
+            <div style="padding: 50px; width: 100%">
 
                 <section>
                     <div class="flex flex-space-between" style="height: 80px">
@@ -45,23 +44,33 @@ TODO: Colocar a API dos Carros no Docker
                     </div>
                 </section>
 
-                <section>
-                    <div style="font-weight: 600; margin: 0px 0 20px 0">Anúncios</div>
-                    <div id="lista_anuncios" class="flex"></div>
-                    <div id="lista_anuncios_sem_dados" class="container_vazio">
-                        Nenhum veículo foi selecionado
-                    </div>
-                    <div style="margin-top: 50px">
-                        <button id="btnPublicar" class="btnAzul" style="width:400px">Publicar</button>
-                    </div>
-                    <div style="color:#495e6d; font-size: 10pt; margin-left: 11px">
-                        * Ao clicar em "Publicar" os veículos acima serão anunciados para nossos parceiros.
-                    </div>
+                <section id="secAnunciosCarregando" style="display: none; line-height: 100px; text-align: center">
+                    Obtendo os anúncios...
+                </section>
+                
+                <section id="secAnunciosErro" style="color: grey; display: none; line-height: 100px; text-align: center">
+                    Ocorreu um erro. Recarregue a página ou tente novamente mais tarde.
                 </section>
 
-                <section>
-                    <div style="font-weight: 600; margin: 50px 0 20px 0; border-top: solid 1px #dfe1e6; padding-top: 30px">Veículos disponíveis</div>
-                    <div id="lista_veiculos" class="flex"></div>
+                <section id="secAnunciosSucesso" style="display: none">
+                    <section>
+                        <div style="font-weight: 600; margin: 0px 0 20px 0">Anúncios</div>
+                        <div id="lista_anuncios" class="flex"></div>
+                        <div id="lista_anuncios_sem_dados" class="container_vazio">
+                            Nenhum veículo foi selecionado
+                        </div>
+                        <div style="margin-top: 50px">
+                            <button id="btnPublicar" class="btnAzul" style="width:400px">Publicar</button>
+                        </div>
+                        <div style="color:#495e6d; font-size: 10pt; margin-left: 11px">
+                            * Ao clicar em "Publicar" os veículos acima serão anunciados para nossos parceiros.
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="font-weight: 600; margin: 50px 0 20px 0; border-top: solid 1px #dfe1e6; padding-top: 30px">Veículos disponíveis</div>
+                        <div id="lista_veiculos" class="flex"></div>
+                    </section>
                 </section>
 
             </div>

@@ -1,5 +1,5 @@
-SERVIDOR_API = 'http://localhost:5000/';
-SERVIDOR_API_ANUNCIOS = 'http://localhost:5001/';
+SERVIDOR_API = 'http://localhost:5001/';
+SERVIDOR_API_ANUNCIOS = 'http://localhost:5002/';
 
 
 btnPublicar.onclick = function() {
@@ -75,7 +75,6 @@ const get_anuncios = async () => {
     .then((response) => response.json())
     .then(function(data) {
       veiculos = data.veiculos;
-
       const url = `${SERVIDOR_API_ANUNCIOS}anuncios`;
       fetch(url, {
         method: 'get',
@@ -87,13 +86,23 @@ const get_anuncios = async () => {
         const veiculosNaoAnunciados = veiculos.filter(x => !idsVeiculosAnunciados.includes(x.id_veiculo));
         render_veiculos(lista_anuncios, veiculosAnunciados, veiculos);
         render_veiculos(lista_veiculos, veiculosNaoAnunciados, veiculos);
-
         render_veiculos_anuncios_sem_dados(data.anuncios);
+
+        secAnunciosCarregando.style.display = 'none';
+        secAnunciosSucesso.style.display = 'block';
       })
-      .catch((error) => console.error('Error:', error));
+      .catch(function(error) {
+        console.error('Error:', error);
+        secAnunciosCarregando.style.display = 'none';
+        secAnunciosErro.style.display = 'block';
+      });
 
     })
-    .catch((error) => console.error('Error:', error));
+    .catch(function(error) {
+      secAnunciosCarregando.style.display = 'none';
+      secAnunciosErro.style.display = 'block';
+      console.error('Error:', error);
+    });
 }
 
 

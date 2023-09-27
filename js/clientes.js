@@ -1,4 +1,4 @@
-SERVIDOR = 'http://localhost:5000/';
+SERVIDOR_API = 'http://localhost:5001/';
 
 btnNovoCliente.onclick = () => exibir_modal_novo_cliente();
 
@@ -34,7 +34,7 @@ txtCepEnderecoCliente.onkeyup = function(event) {
   --------------------------------------------------------------------------------------
 */
 const delete_cliente = async (id) => {
-  const url = `${SERVIDOR}cliente/${id}`;
+  const url = `${SERVIDOR_API}cliente/${id}`;
   fetch(url, {
     method: 'delete',
   })
@@ -53,7 +53,7 @@ const delete_cliente = async (id) => {
   --------------------------------------------------------------------------------------
 */
 const get_cliente = async (id) => {
-  const url = `${SERVIDOR}cliente/${id}`;
+  const url = `${SERVIDOR_API}cliente/${id}`;
   fetch(url, {
     method: 'get',
   })
@@ -69,7 +69,7 @@ const get_cliente = async (id) => {
   --------------------------------------------------------------------------------------
 */
 const get_clientes = async () => {
-  const url = `${SERVIDOR}clientes`;
+  const url = `${SERVIDOR_API}clientes`;
   fetch(url, {
     method: 'get',
   })
@@ -117,7 +117,7 @@ const get_informacoes_cep = async(cep) => {
   --------------------------------------------------------------------------------------
 */
 const post_cliente = async (cliente) => {
-  const url = `${SERVIDOR}cliente`;
+  const url = `${SERVIDOR_API}cliente`;
 
   const formData = new FormData();
 
@@ -151,7 +151,7 @@ const post_cliente = async (cliente) => {
   --------------------------------------------------------------------------------------
 */
 const put_cliente = async (cliente) => {
-  const url = `${SERVIDOR}cliente/${cliente.id}`;
+  const url = `${SERVIDOR_API}cliente/${cliente.id}`;
 
   const formData = new FormData();
 

@@ -1,4 +1,4 @@
-SERVIDOR = 'http://localhost:5000/';
+SERVIDOR_API = 'http://localhost:5001/';
 
 btnNovoAluguel.onclick = () => ativar_newForm();
 
@@ -47,7 +47,7 @@ txtCpfCliente.onkeyup = function(event) {
   --------------------------------------------------------------------------------------
 */
 const delete_aluguel = async (idAluguel) => {
-  const url = `${SERVIDOR}aluguel/${idAluguel}`;
+  const url = `${SERVIDOR_API}aluguel/${idAluguel}`;
   fetch(url, {
     method: 'delete',
   })
@@ -66,7 +66,7 @@ const delete_aluguel = async (idAluguel) => {
   --------------------------------------------------------------------------------------
 */
 const get_alugueis = async () => {
-  const url = `${SERVIDOR}alugueis`;
+  const url = `${SERVIDOR_API}alugueis`;
   fetch(url, {
     method: 'get',
   })
@@ -84,7 +84,7 @@ const get_alugueis = async () => {
   --------------------------------------------------------------------------------------
 */
 const get_aluguel = async (id) => {
-  const url = `${SERVIDOR}aluguel/${id}`;
+  const url = `${SERVIDOR_API}aluguel/${id}`;
   fetch(url, {
     method: 'get',
   })
@@ -100,7 +100,7 @@ const get_aluguel = async (id) => {
   --------------------------------------------------------------------------------------
 */
 const get_cliente = async(cpf) => {
-  const url = `${SERVIDOR}cliente`;
+  const url = `${SERVIDOR_API}cliente`;
 
   const formData = new FormData();
   formData.append('cpf', cpf);
@@ -124,7 +124,7 @@ const get_cliente = async(cpf) => {
   --------------------------------------------------------------------------------------
 */
 const get_modelos_veiculos = async () => {
-  const url = `${SERVIDOR}veiculos`;
+  const url = `${SERVIDOR_API}veiculos`;
   fetch(url, {
     method: 'get',
   })
@@ -143,7 +143,7 @@ const get_modelos_veiculos = async () => {
   --------------------------------------------------------------------------------------
 */
 const post_aluguel = async (aluguel) => {
-  const url = `${SERVIDOR}aluguel`;
+  const url = `${SERVIDOR_API}aluguel`;
 
   const formData = new FormData();
   formData.append('id_cliente', aluguel.id_cliente);
@@ -171,7 +171,7 @@ const post_aluguel = async (aluguel) => {
   --------------------------------------------------------------------------------------
 */
 const put_aluguel = async (aluguel) => {
-  const url = `${SERVIDOR}aluguel/${aluguel.id}`;
+  const url = `${SERVIDOR_API}aluguel/${aluguel.id}`;
 
   const formData = new FormData();
   formData.append('id_veiculo', aluguel.id_veiculo);
