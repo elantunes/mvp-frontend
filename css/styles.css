@@ -1,9 +1,9 @@
-html * {
-    margin: 0;
-}
-
 html {
     height: 100%;
+}
+
+html * {
+    margin: 0;
 }
 
 body {
@@ -11,37 +11,6 @@ body {
     color: #0f2b3d;
     font-family: Roboto;
     height: 100%;
-}
-
-.btnPrimario,
-.btnSecundario {
-    border: 2px solid transparent;
-    border-radius: 6px;
-    cursor: pointer;
-    font: 13px Roboto;
-    letter-spacing: 1pt;
-    margin: 10px;
-    padding: 10px 20px;
-}
-
-.btnPrimario {
-    background-color: #f1520a;
-    color: white;
-    transition: 0.3s;
-}
-
-.btnPrimario:hover {
-    background-color: #ae1407;
-}
-
-.btnSecundario {
-    background-color: white;
-    color: #f1520a;
-}
-
-.btnSecundario:hover {
-    color: #ae1407;
-    border-color: #ae1407;
 }
 
 .flex {
@@ -62,6 +31,30 @@ body {
 
 .flex-start {
 	align-content: flex-start;
+}
+
+.form > div {
+    margin: 20px;
+}
+
+.menu > div {
+    cursor: pointer;
+    line-height: 50px;
+    padding-left: 40px;
+}
+
+.menu > div:hover {
+    background: rgba(0, 0, 0, 1);
+}
+
+.menu > div.menu-item-selecionado {
+    background: rgba(0, 0, 0, .8);
+ }
+
+.menu > div > a {
+    color: inherit;
+    display: block;
+    text-decoration: none;
 }
 
 .modal-titulo {
@@ -142,4 +135,80 @@ body {
 
 .tabelao > .linhas .item .icone img {
     vertical-align: middle;
+}
+
+#txtComplementoEnderecoCliente,
+#txtCepEnderecoCliente,
+#txtCpfCliente,
+#txtNumeroEnderecoCliente {
+    width: 125px;
+}
+
+#txtNomeCliente {
+    width: 300px;
+}
+
+/********************
+ Cards de Anúncios
+********************/
+
+#lista_anuncios,
+#lista_veiculos {
+    flex-wrap: wrap;
+}
+
+#lista_anuncios *,
+#lista_veiculos * {
+    cursor: pointer;
+    line-height: 25px;
+}
+
+#lista_anuncios .preco,
+#lista_veiculos .preco {
+    color: #008000;
+    font-size: 15pt;
+    margin-top: 10pt;
+}
+
+#lista_anuncios > div,
+#lista_veiculos > div {
+    border-style: solid;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    width: 150px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+#lista_anuncios > div:hover,
+#lista_veiculos > div:hover {
+    transform: scale(1.1);
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+#lista_anuncios [data-veiculo-item] {
+    border-color: #ff4500;
+}
+
+#lista_anuncios > div {
+    box-shadow: 5px 5px rgba(255, 69, 0, .2);
+}
+
+#lista_veiculos > div {
+    border: solid rgba(185, 217, 235, .5);
+    box-shadow: 5px 5px rgba(185, 217, 235, 0);
+}
+
+
+/********************
+ Containers
+********************/
+
+.container_vazio {
+    border: #B9D9EB 2px dashed;
+    display: none;
+    line-height: 100px;
+    text-align: center;
 }

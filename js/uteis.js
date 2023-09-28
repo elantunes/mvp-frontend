@@ -30,3 +30,14 @@ function string_para_date(data) {
   const retorno = new Date(new Date(data).toISOString().slice(0,-1));
   return retorno;
 }
+
+
+/*
+  --------------------------------------------------------------------------------------
+  Indicado para validações de formulários.
+  --------------------------------------------------------------------------------------
+*/
+function vazio_vira_null(texto) {
+  resultado = texto != '' ? texto : null;
+  return resultado;
+}
